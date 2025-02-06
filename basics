@@ -1,0 +1,64 @@
+---CREATE REACT APP
+
+#empty folder
+#npx-node package executor
+
+Npx create-react-my-app   #my-app is the name of the project
+Cd my-app #change directory(folder)
+Npm start #to start the react application
+
+Project folder:
+
+Public/index.html : the main html file that serves as  the entry point for the app.
+
+Src/index.js : the js entry point for the react app where the DOM is rendered.
+
+Src/app.js : the main component that serves as the root of the component tree.
+
+Src/components : a folder to store reusable components
+1)components : building blocks of the react application
+
+vs code:
+app.js
+import logo from './logo.svg';
+import './App.css';
+import Welcome from './welcome';
+
+
+const App=()=>{
+  return(
+    <div style={{textAlign: 'center' ,color : 'red'}}>
+      <Welcome name="Nandhitha" greeting ="hello"/>
+      <Welcome name="Sahitya" greeting ="hai"/>
+
+    </div>
+  )
+}
+
+// function App(){
+
+// // return (
+
+// // <div className ="App">
+
+// // <Welcome/>
+
+// // </div>
+
+// // )
+
+// // }
+
+export default App;
+
+welcome.js
+import React from 'react';
+
+const Welcome=(props)=>{
+    const{name , greeting} = {props};
+
+    return(
+        <h1 className ="h1heading">{greeting},{name}</h1>
+    )
+}
+export default Welcome;
