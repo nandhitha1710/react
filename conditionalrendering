@@ -1,0 +1,115 @@
+Conditional rendering :
+
+Greeting.js
+
+import React from 'react';
+function Greeting({isLoggedIn}){
+    if(isLoggedIn){
+        return <h1>Welcome BACK</h1>
+    }else{
+        return <h1>please login</h1>
+    }
+}
+export default Greeting;
+
+App.js
+
+
+import React from "react";
+import Greeting from "./Greeting";
+function App(){
+  const isLoggedIn=true;
+  return(
+    <div className="App">
+      <Greeting isLoggedIn={isLoggedIn}/>
+    </div>
+  )
+}
+export default App;
+
+0/p : welcome back 
+
+If we give false ; then the 
+o/p: please login
+
+#lists and keys :
+In react , a list is a collection of items you want to show on screen.
+#keys : they helps us to keep the track of items in a list 
+--react know which item you have changed; updated.
+
+Map() : elements in array function will be applied to all elements
+
+Const n=[1,2,3,4,5]
+Const d=n.map(num=>num*2)
+Console.log(d)
+#2,4,6,8,10.
+
+#map () in  react in lists :
+
+
+import React from "react";
+const FruitList=()=>{
+  const fruits=['apple','cherry','banana'];
+  return(
+    <div>
+      <h1>fruit list</h1>
+      <ul>
+        {fruits.map((fruit,index)=>(
+          <li key={index}>{fruit}</li>
+        ))
+        }
+      </ul>
+    </div>
+  )
+}
+
+export default FruitList;
+
+o/p:
+
+fruit list
+	• apple
+	• cherry
+banana
+
+
+vs code  :
+app.js
+  import React from "react";
+
+const FruitList=()=>{
+  const fruits=['apple','cherry','banana'];
+  return(
+    <div>
+      <h1>fruit list</h1>
+      <ul>
+        {fruits.map((fruit,index)=>(
+          <li key={index}>{fruit}</li>
+        ))
+        }
+      </ul>
+    </div>
+  )
+}
+// import Greeting from "./Greeting";
+// function App(){
+//   const isLoggedIn=true;
+//   return(
+//     <div className="App">
+//       <Greeting isLoggedIn={isLoggedIn}/>
+//     </div>
+//   )
+// }
+export default FruitList;
+
+greeting.js
+  import React from 'react';
+function Greeting({isLoggedIn}){
+    if(isLoggedIn){
+        return <h1>Welcome BACK</h1>
+
+    }else{
+        return <h1>please login</h1>
+    }
+}
+export default Greeting;
