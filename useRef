@@ -1,0 +1,74 @@
+Adding images to the useReducer : 
+
+
+import React, { useReducer } from 'react';
+// Reducer function to track the number of apples
+function appleReducer(state = 3, action) {
+  switch (action.type) {
+    case 'ADD_APPLE':
+      return state + 1;
+    case 'Eat_APPLE':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+function App() {
+  const [count, dispatch] = useReducer(appleReducer, 3);
+  return (
+    <div style={{ textAlign: 'center', padding: '50px', fontSize: '20px', backgroundColor: 'pink', margin: 'auto', width: '50%', borderRadius: '10px', marginTop: '50px' }}>
+      {Array.from({ length: count }).map((_, index) => (
+        <img key={index} src={require("https://t4.ftcdn.net/jpg/02/52/93/81/360_F_252938192_JQQL8VoqyQVwVB98oRnZl83epseTVaHe.jpg")} alt='Apple' style={{ width: '100px', height: '100px', margin: '5px', borderRadius: '10px' }} />
+      ))}
+      <h1>Apple Counter</h1>
+      <p>Number of apples: {count}</p>
+      <button
+        style={{ margin: '10px', padding: '10px 20px', fontSize: '16px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}
+        onClick={() => dispatch({ type: 'ADD_APPLE' })}
+      >
+        Add Apple
+      </button>
+      <button
+        style={{ margin: '10px', padding: '10px 20px', fontSize: '16px', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px' }}
+        onClick={() => dispatch({ type: 'Eat_APPLE' })}
+      >
+        Eat Apple
+      </button>
+    </div>
+  );
+}
+export default App;
+
+useRef:
+•	useState: changes the state, React will render the component and update the UI with the new element.
+•	useRef: changing the value by using useRef does not re-render; stays the same even when the value is updated.
+•	useRef: when you change the value stored in ref.current, it does not make the componentrender. This is useful when you need to store values or interact with DOM elements without extra re-renders.
+•	Commonly used: 
+o	Accessing a DOM element: like scrolling to screen 
+o	Focusing the input
+o	Storing values: It will keep track of values that don’t need to update the UI but need to remember the previous state.
+
+
+
+import React, {useState, useEffect, useRef} from 'react';
+
+function CounterWithPrev(){
+    const [count, setCount] = useState(0);
+    const prevCount = useRef();
+    //create a ref to store the previous value
+
+    useEffect(()=>{
+        prevCount.current = count;
+    }, [count])
+
+    return(
+        <div>
+            <p>Current Counter: {count}</p>
+            <p>prevCount: {prevCount.current}</p>
+
+            <button onClick={()=>setCount(count+1)}>Increment</button>
+        </div>
+    )
+}
+export default CounterWithPrev;
+
